@@ -14,7 +14,7 @@ class DiceSet
 
   def roll(count)
     (1..count).each do |i|
-      @values << 3
+      @values << rand(5) + 1
     end
   end
 end
@@ -53,7 +53,7 @@ class AboutDiceProject < EdgeCase::Koan
     dice.roll(5)
     second_time = dice.values
 
-    assert_not_equal first_time, second_time,
+    assert !(first_time.equal? second_time),
       "Two rolls should not be equal"
 
     # THINK ABOUT IT:
@@ -61,6 +61,7 @@ class AboutDiceProject < EdgeCase::Koan
     # If the rolls are random, then it is possible (although not
     # likely) that two consecutive rolls are equal.  What would be a
     # better way to test this.
+    # Would ne better to look at object level. For example equal? method
   end
 
   def test_you_can_roll_different_numbers_of_dice
