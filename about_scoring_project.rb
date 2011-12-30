@@ -30,7 +30,28 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  other = []
+
+  def sel_num(num)
+    "dice.select { |i| i == #{num} }"
+  end
+
+  ones   = eval sel_num(1)
+  fives  = eval sel_num(5)
+
+  [2, 3, 4, 6].each do |i|
+    other = eval sel_num(i) if (eval sel_num(i)).length > other.length
+  end
+
+  if ones.length >= 3
+    1000 + ( ( ones.length - 3) * 100 ) + ( fives.length * 50 )
+  elsif fives.length >= 3
+    500  + ( ones.length * 100 ) + ( ( fives.length - 3 ) * 50 )
+  elsif other.length >= 3
+    ( other.first * 100 ) + ( ones.length * 100 ) + ( fives.length * 50 )
+  else
+    ( ones.length * 100 ) + ( fives.length * 50 )
+  end
 end
 
 class AboutScoringProject < EdgeCase::Koan
