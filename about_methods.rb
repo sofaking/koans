@@ -119,7 +119,13 @@ class AboutMethods < EdgeCase::Koan
     exception = assert_raise(NoMethodError) do
       self.my_private_method
     end
-    assert_match /private\ method/, exception.message
+    in_ruby_version("jruby") do
+      assert_match /undefined\ method/, exception.message
+    end
+
+    in_ruby_version("ruby") do
+      assert_match /private\ method/, exception.message
+    end
   end
 
   # ------------------------------------------------------------------
