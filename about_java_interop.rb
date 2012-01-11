@@ -22,7 +22,8 @@ class AboutJavaInterop < EdgeCase::Koan
   end
 
   def test_include_class_includes_class_in_module_scope
-    assert_nil defined?(TreeSet)
+    assert_nil defined?(TreeSet) unless defined?(TreeSet)
+    assert_equal "method", defined?(include_class)
     include_class "java.util.TreeSet"
     assert_equal "constant", defined?(TreeSet)
   end

@@ -222,6 +222,7 @@ module EdgeCase
       "JRuby 1.9.x Koans"
       ruby_version = "(in #{'J' if defined?(JRUBY_VERSION)}Ruby #{defined?(JRUBY_VERSION) ? JRUBY_VERSION : RUBY_VERSION})"
       ruby_version = ruby_version.side_padding(54)
+      total_tests = EdgeCase::Koan.total_tests
       return <<-ENDTEXT
                                   ,,   ,  ,,
                                 :      ::::,    :::,
@@ -234,7 +235,7 @@ module EdgeCase
      ::,:   ,,:::,                                           ,::::::::::::,
     ,:::, :,,:::                                               ::::::::::::,
    ,::: :::::::,#{        end_message.side_padding 48          },::::::::::::
-   :::,,,::::::                                                   ::::::::::::
+   :::,,,::::::        " #{pass_count}/#{total_tests}"            ::::::::::::
  ,:::::::::::,                                                    ::::::::::::,
  :::::::::::,                                                     ,::::::::::::
 :::::::::::::                                                     ,::::::::::::

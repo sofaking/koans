@@ -136,6 +136,7 @@ class AboutSensei < EdgeCase::Koan
     EdgeCase::ThePath.new(you).walk
 
     instructions = you.instruct
-    assert_match "The student has become the master", instructions
+    total_tests = EdgeCase::Koan.total_tests
+    assert_match "The student has become the master", instructions, "#{you.pass_count}/#{total_tests}"
   end
 end
